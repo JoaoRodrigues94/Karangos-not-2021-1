@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Programação Web 2021/1 &bull; PROVA 1</title>
+</head>
+
+<body>
+
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+  <script type="text/babel">
+
+    /**********************************************************************************
+    1. Converta os códigos comentados abaixo em componentes de função
+    **********************************************************************************/
+
+    /* PRIMEIRO COMPONENTE */
+    function Componente1({handleInputChanged}){
+        return(
+            <div className="input-set">
+                <label htmlFor="area">Área (km²)</label>
+                <input id="area" type="number" onChange={handleInputChanged} />
+            </div>
+        )
+    }
+    
+
+    /* SEGUNDO COMPONENTE */
+    function Componente2({handleInputChanged}){
+        return(
+        <div className="input-set">
+            <label htmlFor="pop">População</label>
+            <input id="pop" type="number" onChange={handleInputChanged} />
+        </div>
+        )
+    }
+      
+    
+
+    /* TERCEIRO COMPONENTE */
+    function Componente3({densidadePop, categoria}){
+        return(
+            <div className="result">
+                <div>Densidade populacional: {densidadePop}</div>
+                <div>Categoria: {categoria}</div>
+            </div>
+        )
+    }
+
+    
+
+    function Page() {
+
+      /**********************************************************************************
+        2. Crie aqui as variáveis de estado que julgar necessárias
+      **********************************************************************************/
+
+      /**********************************************************************************
+        3. Escreva aqui o código necessário para o useEffect()
+
+        Nesse código, deverá ser feito o seguinte:
+        - O cálculo da densidade populacional, igual a população dividida por área
+        - A definição da categoria, conforme as regras:
+          - Quando densidade < 100 -> Baixa densidade
+          - Densidade > 100 e < 1000 -> Média densidade
+          - Densidade > 1000 -> Alta densidade
+        - Atualize as variáveis de estado apropriadas, para usar seu valor no terceiro
+          componente
+        - NÃO SE ESQUEÇA DAS DEPENDÊNCIAS!!!!
+
+      **********************************************************************************/
+
+        const[state, setState] = React.useState({
+            densidadePop: undefined,
+            populacao: undefined,
+            area: undefined,
+            categoria: undefined
+        })
+
+        const {densidadePop, populacao, area, categoria} = state
+
+        function handleState(event){
+            if(event.target.id === 'area') setState({...state, area: event.target.value})
+            else if(event.target.id === 'pop') setState({...state, populacao: event.target.value})
+        }
+
+        React.useEffect(() => {
+            let densidade,categoriaTemp
+            if (isNaN(area) || isNaN(populacao)) densidade = '-'
+            else densidade = populacao / area
+
+            if(densidade < 100)
+                categoriaTemp = 'Baixa Densidade'
+            else if(densidade > 100 && densidade <= 1000 )
+                categoriaTemp = 'Média Densidade'
+            else if(densidade > 1000)
+                categoriaTemp = 'Alta Densidade'
+            else
+                categoriaTemp = ''
+
+            densidade += ' hab/km²'
+
+            setState({...state, densidadePop: densidade, categoria: categoriaTemp})
+        }, [populacao, area])
+
+      return (
+        <>
+          <h1>Densidade populacional</h1>
+
+          <div id="world-map">
+            <img src="world-map.png" alt="Mapa múndi" />
+          </div>
+
+          <Componente1 handleInputChanged={handleState} />
+          <Componente2 handleInputChanged={handleState} />
+          <Componente3 densidadePop={densidadePop} categoria={categoria} />
+
+        </>
+      )
+    }
+
+    /**********************************************************************************
+        4. No final, sua página deve ficar semelhante à imagem do arquivo screenshot.png.
+           Todo o CSS necessário já está no arquivo styles.css. Não é necessário fazer
+           nenhuma alteração de estilo, exceto usar os nomes de classe corretos nos
+           componentes.
+
+        - A densidade e a categoria devem ser atualizadas imediatamente quando os inputs
+          da área ou da população forem alterados
+
+        - Alguns valores para testar:
+
+        PAÍS            ÁREA              POPULAÇÃO       DENSIDADE CALCULADA
+        Brasil          8510295,914       211755692       24.882294827333542    (Baixa d.)
+        Japão           377975            126440000       334.51947880150806    (Média d.)
+        Bangladesh      144000            163220762       1133.4775138888888    (Alta d.)
+
+      **********************************************************************************/
+
+    ReactDOM.render(<Page />, document.getElementById('root'))
+
+  </script>
+
+</body>
+
+</html>
+
+<!--
+    1. Atualização de estado
+    2. Atualização do componente
+    3. useEffect()
+-->
