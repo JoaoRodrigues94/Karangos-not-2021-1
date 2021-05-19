@@ -31,6 +31,8 @@ import yellow from '@material-ui/core/colors/yellow';
 import pink from '@material-ui/core/colors/pink';
 import KarangosList from './routed/KarangosList';
 import KarangosForm from './routed/KarangosForm';
+import Estudo from './routed/Estudo';
+import Estudo2 from './routed/Estudo2';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const theme = createMuiTheme({
@@ -48,7 +50,8 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.background.default,
-    minHeight: '100vh'  // 100% da altura da área visível
+    minHeight: '100vh',  // 100% da altura da área visível
+    paddingBotton: '42px' // Para que o conteúdo não fique escondido atrás de rooter
   },
   routed: {
     padding: '25px',
