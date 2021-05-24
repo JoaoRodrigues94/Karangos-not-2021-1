@@ -31,8 +31,8 @@ import yellow from '@material-ui/core/colors/yellow';
 import pink from '@material-ui/core/colors/pink';
 import KarangosList from './routed/KarangosList';
 import KarangosForm from './routed/KarangosForm';
-import Estudo from './routed/Estudo';
-import Estudo2 from './routed/Estudo2';
+import PessoaForm from './routed/PessoaForm';
+import PessoaList from './routed/PessoaList';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const theme = createMuiTheme({
@@ -73,6 +73,12 @@ function Main() {
             </Route>
             <Route path='/new'>
               <KarangosForm />
+            </Route>
+            <Route path='/listaPessoas'>
+              <PessoaList />
+            </Route>
+            <Route path='/newPessoa'>
+              <PessoaForm />
             </Route>
           </Switch>
         </Box>
