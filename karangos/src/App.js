@@ -29,7 +29,7 @@ import FooterBar from './ui/FooterBar';
 import { Box } from '@material-ui/core';
 import yellow from '@material-ui/core/colors/yellow';
 import pink from '@material-ui/core/colors/pink';
-import KarangosList from './routed/KarangosList';
+import KarangosList from './routed/KarangosList2';
 import KarangosForm from './routed/KarangosForm';
 import PessoaForm from './routed/PessoaForm';
 import PessoaList from './routed/PessoaList';
