@@ -23,7 +23,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 2000,
   },
   tableRow: {
     '& button': {       // Linha da tabela em estado "normal"
