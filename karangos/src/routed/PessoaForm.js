@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Checkbox from '@material-ui/core/Checkbox';
 import InputMask from 'react-input-mask';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { Toolbar } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';

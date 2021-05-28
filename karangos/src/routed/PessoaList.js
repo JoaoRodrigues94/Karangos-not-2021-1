@@ -142,8 +142,8 @@ export default function PessoaList() {
             <TableCell align="center">Uf</TableCell>
             <TableCell align="center">Telefone</TableCell>
             <TableCell align="center">E-Mail</TableCell>
-            <TableCell align="center"></TableCell>
-            <TableCell align="center"></TableCell>
+            <TableCell align="center">Editar</TableCell>
+            <TableCell align="center">Excluir</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
