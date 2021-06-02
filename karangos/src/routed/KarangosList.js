@@ -18,7 +18,6 @@ import Button from '@material-ui/core/Button'
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { useHistory } from 'react-router-dom'
 import ConfirmDialog from '../ui/ConfirmDialog'
-// Mensagens de delete!
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -54,14 +53,13 @@ export default function KarangosList() {
   const [deletable, setDeletable] = useState() // Cód. do registro a ser excluído
   const [snackState, setSnackState] = useState({
     open: false,
-    severity: 'sucess',
-    message: 'Karango excluído com sucesso'
+    severity: 'success',
+    message: 'Karango excluído com sucesso'  
   })
 
   function handleDialogClose(result) {
     setDialogOpen(false)
-    //alert(result)
-    if(result) deleteItem();
+    if(result) deleteItem()
   }
 
   function handleDeleteClick(id) {
@@ -69,13 +67,13 @@ export default function KarangosList() {
     setDialogOpen(true)
   }
 
-  async function deleteItem(){
-    try{
+  async function deleteItem() {
+    try {
       await axios.delete(`https://api.faustocintra.com.br/karangos/${deletable}`)
-      getData() // Atualiza os dados d tabela
-      setSnackState({...snackState, open: true}) // Exibe a snackbar de sucesso
+      getData()   // Atualiza os dados da tabela
+      setSnackState({...snackState, open: true}) // Exibe a snackbar de sucesso    
     }
-    catch(error){
+    catch(error) {
       // Mostra a snackbar de erro
       setSnackState({
         open: true,
@@ -96,14 +94,15 @@ export default function KarangosList() {
   }
 
   useEffect(() => {
+    
     getData()
   }, [])  // Quando a dependência de um useEffect é um vetor vazio, isso indica
           // que ele será executado apenas uma vez, na inicialização do componente
 
   function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }   
-  
+  }
+
   function handleSnackClose(event, reason) {
     // Evita que a snackbar seja fechada clicando-se fora dela
     if(reason === 'clickaway') return
@@ -115,11 +114,13 @@ export default function KarangosList() {
       <ConfirmDialog isOpen={dialogOpen} onClose={handleDialogClose}>
         Deseja realmente excluir este karango?
       </ConfirmDialog>
+      
       <Snackbar open={snackState.open} autoHideDuration={6000} onClose={handleSnackClose}>
         <Alert onClose={handleSnackClose} severity={snackState.severity}>
           {snackState.message}
         </Alert>
       </Snackbar>
+      
       <h1>Listagem de Karangos</h1>
       <Toolbar className={classes.toolbar} >
         <Button color="secondary" variant="contained" size="large" 

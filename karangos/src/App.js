@@ -74,6 +74,10 @@ function Main() {
             <Route path='/new'>
               <KarangosForm />
             </Route>
+            {/* :id é um parâmetro (nomes de parâmetros começa com dois pontos) */}
+            <Route path='/edit/:id'>
+              <KarangosForm />
+            </Route>
             <Route path='/listaPessoas'>
               <PessoaList />
             </Route>
