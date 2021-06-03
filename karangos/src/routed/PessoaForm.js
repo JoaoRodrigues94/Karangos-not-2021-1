@@ -54,7 +54,7 @@ export default function PessoaForm() {
     cpf: '',
     rg: '',
     logradouro: '',
-    num_imovel: 0,
+    num_imovel: '',
     complemento: '',
     bairro: '',
     municipio: '',
@@ -79,6 +79,7 @@ export default function PessoaForm() {
     cpf: '',
     rg: '',
     logradouro: '',
+    num_imovel: '',
     bairro: '',
     municipio: '',
     uf: '',
@@ -140,6 +141,7 @@ export default function PessoaForm() {
       cpf: '',
       rg: '',
       logradouro: '',
+      num_imovel: '',
       bairro: '',
       municipio: '',
       uf: '',
@@ -169,6 +171,12 @@ export default function PessoaForm() {
     // Validação do campo logradouro
     if(data.logradouro.trim() === '') {
       errorTemp.logradouro = 'O LOGRADOURO deve ser preenchido!'
+      isValid = false
+    }
+
+    // Validação do campo num_imovel
+    if(data.num_imovel.trim() === '') {
+      errorTemp.num_imovel = 'O Número deve ser preenchido!'
       isValid = false
     }
 
@@ -292,7 +300,7 @@ export default function PessoaForm() {
           formatChars={formatChars} 
           mask={cpfMask} 
           id="cpf" 
-          onChange={event => handleInputChange(event, 'cp')} 
+          onChange={event => handleInputChange(event, 'cpf')} 
           value={pessoa.cpf}
         >
           {() => <TextField 
@@ -335,13 +343,15 @@ export default function PessoaForm() {
         />
 
         <TextField 
-          id="numero" 
-          label="Número Imóvel" 
+          id="num_imovel" 
+          label="Número do Imóvel" 
           variant="filled" 
           value={pessoa.num_imovel} 
           onChange={handleInputChange} 
           fullWidth 
-          type="number"
+          required
+          error={error.num_imovel !== ''}
+          helperText={error.num_imovel} 
         />
 
         <TextField 

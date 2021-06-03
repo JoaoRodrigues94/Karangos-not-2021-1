@@ -50,8 +50,8 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.background.default,
-    minHeight: '100vh',  // 100% da altura da área visível
-    paddingBotton: '42px' // Para que o conteúdo não fique escondido atrás de rooter
+    minHeight: '100vh',  
+    paddingBotton: '42px' 
   },
   routed: {
     padding: '25px',
@@ -82,6 +82,9 @@ function Main() {
               <PessoaList />
             </Route>
             <Route path='/newPessoa'>
+              <PessoaForm />
+            </Route>
+            <Route path='/editCliente/:id'>
               <PessoaForm />
             </Route>
           </Switch>
