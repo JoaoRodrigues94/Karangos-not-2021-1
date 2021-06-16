@@ -35,6 +35,9 @@ import PessoaForm from './routed/PessoaForm';
 import PessoaList from './routed/PessoaList';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+// Home PAGE:
+import HomePage from './routed/HomePage';
+
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
@@ -68,6 +71,9 @@ function Main() {
         <TopBar  />
         <Box id='routed' className={classes.routed}>
           <Switch>
+          <Route path='/' exact='true'>
+              <HomePage/>
+            </Route>
             <Route path='/list'>
               <KarangosList/>
             </Route>
